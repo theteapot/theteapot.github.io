@@ -1,1 +1,33 @@
-Hello world
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Warhammer Campaign Site</title>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript" src="script.js"></script>
+    </head>
+    <body>
+        <div id="campaignBlocks">
+
+        </div>
+
+        <div id="inputArea">
+
+            <h2>Advantages</h2>    
+            <div id="advantageBlock"/>
+                <ul class="inputElement"></ul>
+                <input type="text">
+                <button type="button" id="addButton" onClick="addInput('advantageBlock')"> Add another</button>
+            
+            </div>
+
+            <h2>Disadvantages</h2>
+            <div id="disadvantageBlock"/>
+                <ul class="inputElement"></ul>
+                <input type="text">
+                <button type="button" id="addButton" onClick="addInput('disadvantageBlock')"> Add another</button>
+            </div>
+
+            <button title="addBlock" onclick="addBlock()">Add block</button>
+        </div>
+    </body>
+</html>
