@@ -55,4 +55,12 @@ $(document).ready(function() {
         heightStyle: "content",
         header: ".mapName"
     })
+
+    $("#addPlayerDialog").dialog({
+        autoOpen: false
+    })
+    $("#addPlayerButton").click(function() {
+        $("#addPlayerDialog").text(generateRandomString("DarkEldar"))
+        $("#addPlayerDialog").dialog("open")
+    })
 })
