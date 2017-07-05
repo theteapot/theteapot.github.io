@@ -37,12 +37,40 @@ $(document).ready(function() {
         heightStyle: "content",
         header: ".campaignBlock > h4"
     })
+
+    // Player Block jQuery
     $(".playerBlock").accordion({
         collapsible: true,
         active: false,
         heightStyle: "content",
         header: ".name"
     })
+    $("#addPlayerDialog").dialog({
+        autoOpen: false
+    })
+    var raceTags = ["Space Marines", "Chaos Space Marines", "Tau", "Eldar", "Dark Eldar", "Imperial Guard", "Orks", "Tyrannids", "Necrons", "Sisters of Battle"];
+    $("#raceInput").autocomplete({
+        source: function( request, response ) {
+            var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( request.term ), "i" );
+            response( $.grep( raceTags, function( item ){
+                return matcher.test( item );
+            }) 
+        );}
+    });
+    $("#submitPlayerDialog").button({
+        label: "Done"
+    })
+    $("#submitPlayerDialog").click(function() {
+        
+    })
+    $("#openAddPlayerButton").button({
+        label: "Add player"
+    })
+    $("#openAddPlayerButton").click(function() {
+        $("#addPlayerDialog").dialog("open")
+    })
+
+    // Map block jQuery
     $(".mapList").accordion({
         collapsible: true,
         active: false,
@@ -56,11 +84,5 @@ $(document).ready(function() {
         header: ".mapName"
     })
 
-    $("#addPlayerDialog").dialog({
-        autoOpen: false
-    })
-    $("#addPlayerButton").click(function() {
-        $("#addPlayerDialog").text(generateRandomString("DarkEldar"))
-        $("#addPlayerDialog").dialog("open")
-    })
+    
 })
