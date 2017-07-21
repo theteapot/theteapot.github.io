@@ -1,4 +1,4 @@
 var url = document.URL;
-function doWork() {
+function recieveUrl() {
     document.getElementById('url').innerHTML = url;
 }
