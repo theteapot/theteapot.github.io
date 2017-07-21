@@ -1,0 +1,45 @@
+{
+    "types": {
+        "Dead World": {
+            "bonuses":[]
+        },
+        "Death World": {"bonuses":[]},
+        "Desert World": {"bonuses":[]}, 
+        "Ice World": {"bonuses":[]}, 
+        "Jungle World": {"bonuses":[]}, 
+        "Ocean World": {"bonuses":[]},
+        "Agri-World": {"bonuses":[]},
+        "Cardinal World": {"bonuses":[]},
+        "Cemetary World": {"bonuses":[]},
+        "Civilised World": {"bonuses":[]},
+        "Feral World": {"bonuses":[]}, 
+        "Feudal World": {"bonuses":[]},
+        "Forbidden World": {"bonuses":[]},
+        "Forge World": {"bonuses":[]},
+        "Fortress World": {"bonuses":[]},
+        "Hive World": {"bonuses":[]},
+        "Industrial World": {"bonuses":[]},
+        "Knight World": {"bonuses":[]},
+        "Mining World": {
+            "bonuses":[]},
+        "Pleasure World": {"bonuses":[]},
+        "Penal World": {"bonuses":[]},
+        "Research Station": {"bonuses":[]},
+        "Shrine World": {"bonuses":[]},
+        "Daemon World": {"bonuses":[]},
+        "Craftworld": {"bonuses":[]},
+        "Crone World": {"bonuses":[]},
+        "Exodite World": {"bonuses":[]},
+        "Maiden World": {"bonuses":[]},
+        "Ork World": {"bonuses":[]},
+        "Tau Empire": {
+            "bonuses":[]
+        },
+        "Tomb World": {
+            "bonuses":[]
+        },
+        "Xenos World": {
+            "bonuses":[]
+        }
+    }
+}

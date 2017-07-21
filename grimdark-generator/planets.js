@@ -28,8 +28,8 @@ function writeJSON(object, fileName) {
     })
 }
 
-function randomPlanet(jsonData) {
-    var planetObj = JSON.parse(jsonData)
+function randomPlanet(planetObj) {
+    //var planetObj = JSON.parse(jsonData)
     var length = planetObj.planetNames.length
 
     var planet1 = planetObj.planetNames[randomInt(0,length)]
@@ -64,7 +64,7 @@ function correctPlanetName(planetName) {
     for (var i in planetName) {
         var str = planetName[i]
         //roman numeral matcher
-        var patt = /[[i]*[v]*]/
+        var patt = /^[ivx]*$/
         if (patt.test(str)) {
             newPlanetName.push(str.toUpperCase())
         } else {
@@ -83,8 +83,11 @@ function randomInt(min, max) {
     var randInt = Number(Math.random().toString().slice(2))
     return randInt % (max - min) + min
 }
-
-loadFile("planets.json", function(data) {
+/*loadFile("planets.json", function(data) {
     var planetName = randomPlanet(data)
     console.log(planetName)
-})
+})*/
+
+module.exports = {
+    randomPlanet: randomPlanet
+}

@@ -45,8 +45,9 @@ $(document).ready(function() {
         heightStyle: "content",
         header: ".name"
     })
-    $("#addPlayerDialog").dialog({
-        autoOpen: false
+    //// Add player related snippets
+    $("#openAddPlayerDialog").dialog({
+        autoOpen: false,
     })
     var raceTags = ["Space Marines", "Chaos Space Marines", "Tau", "Eldar", "Dark Eldar", "Imperial Guard", "Orks", "Tyrannids", "Necrons", "Sisters of Battle"];
     $("#raceInput").autocomplete({
@@ -55,19 +56,28 @@ $(document).ready(function() {
             response( $.grep( raceTags, function( item ){
                 return matcher.test( item );
             }) 
-        );}
+        );},
+        autoFocus: true
     });
     $("#submitPlayerDialog").button({
         label: "Done"
     })
     $("#submitPlayerDialog").click(function() {
-        
+        var playerName = $("#playerNameInput").val()
+        $("#playerNameInput").val("")
+        var raceName = $("#raceInput").val()
+        $("#raceInput").val("")
+        var playerBlock = $("<h5 class='name'>"+playerName+", "+raceName+"</h5><div class='mapList'></div>")
+        $(".playerBlock").append(playerBlock)
+        $(".playerBlock").append($("#openAddPlayerButton"))
+        $(".playerBlock").accordion("refresh")
+        $("#openAddPlayerDialog").dialog("close")
     })
     $("#openAddPlayerButton").button({
         label: "Add player"
     })
     $("#openAddPlayerButton").click(function() {
-        $("#addPlayerDialog").dialog("open")
+        $("#openAddPlayerDialog").dialog("open")
     })
 
     // Map block jQuery
