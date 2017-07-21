@@ -14,7 +14,7 @@ function parseUrl(url) {
         var element = url[i].split("=")
         urlObj[element[0]] = element[1]
     }
-    console.log("Url object %s", obj)
+    console.log("Url object %s", urlObj)
     return urlObj;
 }
 
