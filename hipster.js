@@ -1,5 +1,4 @@
 var url = document.URL;
-
-document.onload = function() {
+function doWork() {
     document.getElementById('url').innerHTML = url;
 }
