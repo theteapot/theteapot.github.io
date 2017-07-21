@@ -2,7 +2,7 @@ function recieveUrl() {
     var url = document.URL;
     document.getElementById('url').innerHTML = url;
     var urlParams = parseUrl(url)
-    getUserInformation(url)
+    getUserInformation(urlParams)
 }
 
 function parseUrl(url) {
