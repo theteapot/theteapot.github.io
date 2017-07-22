@@ -68,24 +68,27 @@ function requestApiObjects(accessToken) {
 function recentlyPlayed() {
     // Finds the average popularity of the most recently played tracks
     console.log(this.response)
-    console.log(this.responseText)
+    var response = this.response;
 
     var popSum = 0
-    for (var index = 0; index < this.items.length; index++) {
-        popSum += this.items[index].popularity;
+    for (var index = 0; index < response.items.length; index++) {
+        popSum += response.items[index].popularity;
     }
-    popSum = popSum / this.items.length
-    console.log(JSON.stringify(this));
+    popSum = popSum / response.items.length
+    console.log(JSON.stringify(response));
     console.log(popSum)
+    console.log("Recetly played popsum ", popSum)
 }
 
-function topArtists(data) {
+function topArtists() {
     // Finds average popularity of their top artists
+    var response = this.response;
     var popSum = 0
-    for (var index = 0; index < data.items.length; index++) {
-        popSum += data.items[index].popularity;
+    for (var index = 0; index < response.items.length; index++) {
+        popSum += response.items[index].popularity;
     }
     popSum = popSum / data.items.length
+    console.log("Artist popsum ", popSum)
 }
 
 /*          Utility functions           */
