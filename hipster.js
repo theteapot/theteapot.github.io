@@ -84,7 +84,7 @@ function topArtists() {
     var response = this.response.items;
     var popSum = 0
     for (var index = 0; index < response.length; index++) {
-        popSum += response[index].artist.popularity;
+        popSum += response[index].popularity;
     }
     popSum = popSum / data.items.length
     console.log("Top artist popsum ", popSum)
@@ -95,7 +95,7 @@ function topTracks() {
     var response = this.response.items;
     var popSum = 0
     for (var index = 0; index < response.length; index++) {
-        popSum += response[index].track.popularity;
+        popSum += response[index].popularity;
     }
     popSum = popSum / data.items.length
     console.log("Top track popsum ", popSum)
@@ -108,7 +108,7 @@ function savedAlbums() {
     for (var index = 0; index < response.length; index++) {
         popSum += response[index].album.popularity;
     }
-    popSum = popSum / data.items.length
+    popSum = popSum / response.length
     console.log("Saved album popsum ", popSum)
 }
 
