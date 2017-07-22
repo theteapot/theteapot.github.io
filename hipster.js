@@ -86,7 +86,7 @@ function topArtists() {
     for (var index = 0; index < response.length; index++) {
         popSum += response[index].popularity;
     }
-    popSum = popSum / data.items.length
+    popSum = popSum / response.length
     console.log("Top artist popsum ", popSum)
 }
 
@@ -97,7 +97,7 @@ function topTracks() {
     for (var index = 0; index < response.length; index++) {
         popSum += response[index].popularity;
     }
-    popSum = popSum / data.items.length
+    popSum = popSum / response.length
     console.log("Top track popsum ", popSum)
 }
 
