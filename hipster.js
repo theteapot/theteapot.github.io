@@ -12,13 +12,15 @@ class RequestFactory {
          * callback = function that processes response
          * parameters = javascript object { parameter: value, ... , parameter: value}
          */ 
-        var parameterString = "";
+
+        var parameterString = ""; 
         for (var i = 0; i < Object.keys(parameters).length; i++) {
             var property = Object.keys(parameters)[i];
             var value = parameters[property];
             var string = "?" + property + "=" + value;
             parameterString += string;
         }
+
         var request = new XMLHttpRequest();
         request.addEventListener("load", callback);
         request.open("GET", endpoint + parameterString);
@@ -48,6 +50,7 @@ function handleUrl() {
 }
 
 function authorizeApi() {
+    // Redirects the user to spotify authorization page
     var authUrl = "https://accounts.spotify.com/authorize?client_id=e62d86020b9841e2bbc5c191b73c00ae&redirect_uri=https:%2F%2Ftheteapot.github.io%2Fhipster&scope=user-read-recently-played user-top-read user-follow-read user-library-read&response_type=token"
     window.location.assign(authUrl)
 }
@@ -62,21 +65,28 @@ function requestApiObjects(accessToken) {
 
 }
 
-function recentlyPlayed(data) {
+function recentlyPlayed() {
     // Finds the average popularity of the most recently played tracks
+    console.log(this.response)
+    console.log(this.responseText)
+
+    var popSum = 0
+    for (var index = 0; index < this.items.length; index++) {
+        popSum += this.items[index].popularity;
+    }
+    popSum = popSum / this.items.length
+    console.log(JSON.stringify(this));
+    console.log(popSum)
+}
+
+function topArtists(data) {
+    // Finds average popularity of their top artists
     var popSum = 0
     for (var index = 0; index < data.items.length; index++) {
         popSum += data.items[index].popularity;
     }
     popSum = popSum / data.items.length
-    console.log(JSON.stringify(data));
-    console.log(popSum)
 }
-
-function topArtists(data) {
-    console.log(JSON.stringify(data));
-}
-
 
 /*          Utility functions           */
 
