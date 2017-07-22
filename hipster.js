@@ -83,7 +83,7 @@ function topArtists() {
     // Finds average popularity of their top artists
     var response = this.response.items;
     var popSum = 0
-    for (var index = 0; index < responselength; index++) {
+    for (var index = 0; index < response.length; index++) {
         popSum += response[index].artist.popularity;
     }
     popSum = popSum / data.items.length
@@ -94,7 +94,7 @@ function topTracks() {
     // Finds average popularity of their top tracks
     var response = this.response.items;
     var popSum = 0
-    for (var index = 0; index < responselength; index++) {
+    for (var index = 0; index < response.length; index++) {
         popSum += response[index].track.popularity;
     }
     popSum = popSum / data.items.length
@@ -105,7 +105,7 @@ function savedAlbums() {
     // Finds average popularity of their saved albums
     var response = this.response.items;
     var popSum = 0
-    for (var index = 0; index < responselength; index++) {
+    for (var index = 0; index < response.length; index++) {
         popSum += response[index].album.popularity;
     }
     popSum = popSum / data.items.length
