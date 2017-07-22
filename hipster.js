@@ -60,12 +60,32 @@ function authorizeApi() {
 function requestApiObjects(accessToken) {
     var requestFactory = new RequestFactory(accessToken);
 
-    requestFactory.createRequest("https://api.spotify.com/v1/me/player/recently-played", {"limit":"50"}, recentlyPlayed).send();
-    requestFactory.createRequest("https://api.spotify.com/v1/me/top/artists", {"limit":"50"}, topArtists).send();
-    requestFactory.createRequest("https://api.spotify.com/v1/me/top/tracks", {"limit":"50"}, topTracks).send();
-    requestFactory.createRequest("https://api.spotify.com/v1/me/albums", {"limit": "50"}, savedAlbums).send()
+    requestFactory.createRequest("https://api.spotify.com/v1/me/player/recently-played", {"limit":"50"}, recieveResponse).send();
+    requestFactory.createRequest("https://api.spotify.com/v1/me/top/artists", {"limit":"50"}, recieveResponse).send();
+    requestFactory.createRequest("https://api.spotify.com/v1/me/top/tracks", {"limit":"50"}, recieveResponse).send();
+    requestFactory.createRequest("https://api.spotify.com/v1/me/albums", {"limit": "50"}, recieveResponse).send()
 
 }
+
+function recieveResponse() {
+    // Takes the response and passes it to the appropriate part of scoreObj
+    var response = this.response;
+    console.log(response)
+    // Finds the right category by looking at href
+    var start = response.href.lastIndexOf("/")
+    var end = response.href.indexOf("?") !== -1 ? response.href.indexOf("?") : response.href.length - 1
+    var name = response.href.slice(start, end)
+    console.log(name)
+
+    if (Object.keys(scoreObj).indexOf(name) === -1) { // sees if the entry exists in the score object
+        scoreObj[name] = {"score": 0, "items": response.items}
+    } else {
+        scoreObj[name].items = response.items;
+    }
+    console.log(scoreObj)
+}
+
+var scoreObj = {}
 
 function recentlyPlayed() {
     // Finds the average popularity of the most recently played tracks
