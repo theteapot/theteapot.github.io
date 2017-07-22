@@ -5,24 +5,31 @@
     </head>
 
     <body onload="handleUrl()">
-        <form action="javascript:generateUrl()">
-            <fieldset>
-                <legend> Data to include: </legend>
-                
-                <input id="recentCheck" type="checkbox" class="dataCheckbox" value="user-read-recently-played"/>
-                <label for="recentCheck">Recent history</label>
-                <br>
-                <input id="topArtistCheck" type="checkbox" class="dataCheckbox" value="user-top-read" endpoint=""/>
-                <label for="topArtistCheck">Most played artists</label>
-                <br>
-                <input id="artistFollowCheck" type="checkbox" class="dataCheckbox" value="user-follow-read"/>
-                <label for="artistFollowCheck">Followed artists</label>
-                <br>
-                <input id="libraryCheck" type="checkbox" class="dataCheckbox" value="user-library-read"/>
-                <label for="libraryCheck" >Saved tracks</label>
-            </fieldset>
-            <input type="submit">How hipster am I?</input>
-        </form>
+
+        <div id="beginPage">
+            <button onclick="authorizeApi()">Authorize</button>
+        </div>
+
+        <div id="landingPage">
+            <form action="javascript:generateUrl()">
+                <fieldset>
+                    <legend> Data to include: </legend>
+                    
+                    <input id="recentCheck" type="checkbox" class="dataCheckbox" value="user-read-recently-played" endpoint="/v1/me/player/recently-played"/>
+                    <label for="recentCheck">Recent history</label>
+                    <br>
+                    <input id="topArtistCheck" type="checkbox" class="dataCheckbox" value="user-top-read" endpoint="/v1/me/top/artists"/>
+                    <label for="topArtistCheck">Most played artists</label>
+                    <br>
+                    <input id="artistFollowCheck" type="checkbox" class="dataCheckbox" value="user-follow-read" endpoint="/v1/me/following"/>
+                    <label for="artistFollowCheck">Followed artists</label>
+                    <br>
+                    <input id="libraryCheck" type="checkbox" class="dataCheckbox" value="user-library-read" endpoint="/v1/me/tracks/">
+                    <label for="libraryCheck" >Saved tracks</label>
+                </fieldset>
+                <input type="submit">How hipster am I?</input>
+            </form>
+        </div>
     </body>
 
 </html>
