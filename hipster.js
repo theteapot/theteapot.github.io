@@ -6,13 +6,25 @@ class RequestFactory {
         this.accessToken = accessToken;
     }
 
-    createRequest(endpoint, callback) {
+    createRequest(endpoint, parameters, callback) {
+        /* creates XMLHttpRequest object with certain parameters
+         * endpoint = url string
+         * callback = function that processes response
+         * parameters = javascript object { parameter: value, ... , parameter: value}
+         */ 
+        var parameterString = "";
+        for (var i = 0; i < Object.keys(parameters).length; i++) {
+            var property = Object.keys(parameters)[i];
+            var value = parameters[property];
+            var string = "?" + property + "=" + value;
+            parameterString += string;
+        }
         var request = new XMLHttpRequest();
         request.addEventListener("load", callback);
-        request.open("GET", endpoint);
+        request.open("GET", endpoint + parameterString);
         request.setRequestHeader("Authorization", "Bearer " + this.accessToken);
         request.responseType = "json";
-        request.send();
+        return request;
     }
 }
 
@@ -43,13 +55,26 @@ function authorizeApi() {
 /*          Data handling functions             */
 
 function requestApiObjects(accessToken) {
-    var responseObj = {};
     var requestFactory = new RequestFactory(accessToken);
-    requestFactory.createRequest("https://api.spotify.com/v1/me/player/recently-played#limit=50", recentlyPlayed)
+
+    requestFactory.createRequest("https://api.spotify.com/v1/me/player/recently-played", {"limit":"50"}, recentlyPlayed).send();
+    requestFactory.createRequest("https://api.spotify.com/v1/me/top/artists", {"limit":"50"}, topArtists).send();
+
 }
 
 function recentlyPlayed(data) {
-    console.log(JSON.stringify(data))
+    // Finds the average popularity of the most recently played tracks
+    var popSum = 0
+    for (var index = 0; index < data.items.length; index++) {
+        popSum += data.items[index].popularity;
+    }
+    popSum = popSum / data.items.length
+    console.log(JSON.stringify(data));
+    console.log(popSum)
+}
+
+function topArtists(data) {
+    console.log(JSON.stringify(data));
 }
 
 
