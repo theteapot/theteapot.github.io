@@ -60,7 +60,7 @@ function authorizeApi() {
 function requestApiObjects(accessToken) {
     var requestFactory = new RequestFactory(accessToken);
 
-    requestFactory.createRequest("https://api.spotify.com/v1/me/player/recently-played", {"limit":"50"}, recentlyPlayed("track")).send();
+    requestFactory.createRequest("https://api.spotify.com/v1/me/player/recently-played", {"limit":"50"}, recentlyPlayed).send();
     requestFactory.createRequest("https://api.spotify.com/v1/me/top/artists", {"limit":"50"}, topArtists).send();
     requestFactory.createRequest("https://api.spotify.com/v1/me/top/tracks", {"limit":"50"}, topTracks).send();
     requestFactory.createRequest("https://api.spotify.com/v1/me/albums", {"limit": "50"}, savedAlbums).send()
