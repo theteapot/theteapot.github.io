@@ -8,7 +8,7 @@ class RequestFactory {
 
     createRequest(endpoint, callback) {
         var request = new XMLHttpRequest();
-        request.addEventListener(callback);
+        request.addEventListener("load", callback);
         request.open("GET", endpoint);
         request.setRequestHeader("Authorization", "Bearer " + this.accessToken);
         request.responseType = "json";
@@ -35,12 +35,17 @@ function handleUrl() {
     }
 }
 
+function authorizeApi() {
+    var authUrl = "https://accounts.spotify.com/authorize?client_id=e62d86020b9841e2bbc5c191b73c00ae&redirect_uri=https:%2F%2Ftheteapot.github.io%2Fhipster&scope=user-read-recently-played user-top-read user-follow-read user-library-read&response_type=token"
+    window.location.assign(authUrl)
+}
+
 /*          Data handling functions             */
 
 function requestApiObjects(accessToken) {
     var responseObj = {};
     var requestFactory = new RequestFactory(accessToken);
-    requestFactory.createRequest("/v1/me/player/recently-played", recentlyPlayed)
+    requestFactory.createRequest("/v1/me/player/recently-played#limit=50", recentlyPlayed)
 }
 
 function recentlyPlayed(data) {
