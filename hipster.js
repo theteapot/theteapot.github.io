@@ -45,7 +45,7 @@ function authorizeApi() {
 function requestApiObjects(accessToken) {
     var responseObj = {};
     var requestFactory = new RequestFactory(accessToken);
-    requestFactory.createRequest("/v1/me/player/recently-played#limit=50", recentlyPlayed)
+    requestFactory.createRequest("https://api.spotify.com/v1/me/player/recently-played#limit=50", recentlyPlayed)
 }
 
 function recentlyPlayed(data) {
