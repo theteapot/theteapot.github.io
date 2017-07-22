@@ -68,14 +68,13 @@ function requestApiObjects(accessToken) {
 function recentlyPlayed() {
     // Finds the average popularity of the most recently played tracks
     console.log(this.response)
-    var response = this.response;
+    var response = this.response.items;
 
     var popSum = 0
     for (var index = 0; index < response.items.length; index++) {
-        popSum += response.items[index].popularity;
+        popSum += response.items[index].track.popularity;
     }
     popSum = popSum / response.items.length
-    console.log(JSON.stringify(response));
     console.log(popSum)
     console.log("Recetly played popsum ", popSum)
 }
