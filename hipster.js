@@ -67,8 +67,7 @@ function requestApiObjects(accessToken) {
 
 }
 
-function recentlyPlayed(param) {
-    console.log(param)
+function recentlyPlayed() {
     // Finds the average popularity of the most recently played tracks
     console.log(this.response)
     var response = this.response.items;
