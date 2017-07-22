@@ -2,7 +2,7 @@ function recieveUrl() {
     var url = document.URL;
     document.getElementById('url').innerHTML = url;
     var urlParams = parseUrl(url)
-    getUserInformation(urlParams)
+    console.log(urlParams)
 }
 
 function parseUrl(url) {
@@ -18,13 +18,10 @@ function parseUrl(url) {
     return urlObj;
 }
 
-function getUserInformation(urlObj) {
-    // Gets information from spotifyAPI
-    var request = new XMLHttpRequest()
-    request.addEventListener("load", requestListener)
-    request.open("GET", "https://api.spotify.com/v1/me/player/recently-played");
-    request.setRequestHeader("Authorization", "Bearer " + urlObj.access_token)
-    request.send();
+function sendApiRequests(urlObj) {
+    // Sends requests to spotify API
+    var accesCode = urlObj.access_code
+    
 }
 
 function requestListener() {

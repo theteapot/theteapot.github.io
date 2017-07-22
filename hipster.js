@@ -36,6 +36,6 @@ function parseUrl(url) {
         var element = url[i].split("=")
         urlObj[element[0]] = element[1]
     }
-    console.log("Url object %s", urlObj)
+    console.log("Url object %s", JSON.stringify(urlObj))
     return urlObj;
 }
