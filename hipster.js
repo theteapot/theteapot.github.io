@@ -71,10 +71,10 @@ function recentlyPlayed() {
     var response = this.response.items;
 
     var popSum = 0
-    for (var index = 0; index < response.items.length; index++) {
-        popSum += response.items[index].track.popularity;
+    for (var index = 0; index < response.length; index++) {
+        popSum += response[index].track.popularity;
     }
-    popSum = popSum / response.items.length
+    popSum = popSum / response.length
     console.log(popSum)
     console.log("Recetly played popsum ", popSum)
 }
