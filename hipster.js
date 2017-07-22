@@ -60,34 +60,57 @@ function authorizeApi() {
 function requestApiObjects(accessToken) {
     var requestFactory = new RequestFactory(accessToken);
 
-    requestFactory.createRequest("https://api.spotify.com/v1/me/player/recently-played", {"limit":"50"}, recentlyPlayed).send();
+    requestFactory.createRequest("https://api.spotify.com/v1/me/player/recently-played", {"limit":"50"}, recentlyPlayed("track")).send();
     requestFactory.createRequest("https://api.spotify.com/v1/me/top/artists", {"limit":"50"}, topArtists).send();
+    requestFactory.createRequest("https://api.spotify.com/v1/me/top/tracks", {"limit":"50"}, topTracks).send();
+    requestFactory.createRequest("https://api.spotify.com/v1/me/albums", {"limit": "50"}, savedAlbums).send()
 
 }
 
-function recentlyPlayed() {
+function recentlyPlayed(param) {
+    console.log(param)
     // Finds the average popularity of the most recently played tracks
     console.log(this.response)
     var response = this.response.items;
-
     var popSum = 0
     for (var index = 0; index < response.length; index++) {
         popSum += response[index].track.popularity;
     }
     popSum = popSum / response.length
-    console.log(popSum)
     console.log("Recetly played popsum ", popSum)
 }
 
 function topArtists() {
     // Finds average popularity of their top artists
-    var response = this.response;
+    var response = this.response.items;
     var popSum = 0
-    for (var index = 0; index < response.items.length; index++) {
-        popSum += response.items[index].popularity;
+    for (var index = 0; index < responselength; index++) {
+        popSum += response[index].artist.popularity;
     }
     popSum = popSum / data.items.length
-    console.log("Artist popsum ", popSum)
+    console.log("Top artist popsum ", popSum)
+}
+
+function topTracks() {
+    // Finds average popularity of their top tracks
+    var response = this.response.items;
+    var popSum = 0
+    for (var index = 0; index < responselength; index++) {
+        popSum += response[index].track.popularity;
+    }
+    popSum = popSum / data.items.length
+    console.log("Top track popsum ", popSum)
+}
+
+function savedAlbums() {
+    // Finds average popularity of their saved albums
+    var response = this.response.items;
+    var popSum = 0
+    for (var index = 0; index < responselength; index++) {
+        popSum += response[index].album.popularity;
+    }
+    popSum = popSum / data.items.length
+    console.log("Saved album popsum ", popSum)
 }
 
 /*          Utility functions           */
