@@ -55,12 +55,43 @@ function authorizeApi() {
     window.location.assign(authUrl)
 }
 
+function addRangeInput(id, onchange) {
+    // Add range slider and associated display
+    // n.b. if elementId = artists then displayId = artistsDisplay
+    var rangeFragment = document.createDocumentFragment();
+
+    var rangeInput = document.createElement("INPUT");
+    rangeInput.setAttribute("type", "range");
+    rangeInput.setAttribute("min", 0);
+    rangeInput.setAttribute("onchange", onchange.name + "()")
+    rangeInput.setAttribute('step', 1)
+    rangeInput.setAttribute("max", scoreObj.id.items.length);
+    rangeInput.setAttribute('id', id)
+
+    var rangeDisplay = document.createElement("h2")
+    rangeDisplay.setAttribute("id", id + "Display")
+
+    rangeFragment.appendChild(rangeDisplay);
+    rangeFragment.appendChild(rangeInput);
+    
+    document.getElementById("rangeInputs").appendChild(rangeFragment);
+}
+
+function handleRangeChange() {
+    // Update the value in the display
+    console.log(this)
+    var amount = this.value;
+    var id = this.getAttribute("id")
+    var displayNode = document.getElementById(id + "Display");
+    displayNode.innerHTML = avgPopularity(id, amount)
+}
+
 /*          Data handling functions             */
 
 function requestApiObjects(accessToken) {
     var requestFactory = new RequestFactory(accessToken);
 
-    requestFactory.createRequest("https://api.spotify.com/v1/me/player/recently-played", {"limit":"50"}, recieveResponse).send();
+    //requestFactory.createRequest("https://api.spotify.com/v1/me/player/recently-played", {"limit":"50"}, recieveResponse).send();
     requestFactory.createRequest("https://api.spotify.com/v1/me/top/artists", {"limit":"50"}, recieveResponse).send();
     requestFactory.createRequest("https://api.spotify.com/v1/me/top/tracks", {"limit":"50"}, recieveResponse).send();
     requestFactory.createRequest("https://api.spotify.com/v1/me/albums", {"limit": "50"}, recieveResponse).send()
@@ -72,7 +103,7 @@ function recieveResponse() {
     var response = this.response;
     console.log(response)
     // Finds the right category by looking at href
-    var start = response.href.lastIndexOf("/")
+    var start = response.href.lastIndexOf("/") + 1
     var end = response.href.indexOf("?") !== -1 ? response.href.indexOf("?") : response.href.length - 1
     var name = response.href.slice(start, end)
     console.log(name)
@@ -82,54 +113,20 @@ function recieveResponse() {
     } else {
         scoreObj[name].items = response.items;
     }
+    addRangeInput(name, handleRangeChange) // once the data is loaded add the range slider to control popularity
     console.log(scoreObj)
 }
 
 var scoreObj = {}
 
-function recentlyPlayed() {
-    // Finds the average popularity of the most recently played tracks
-    console.log(this.response)
-    var response = this.response.items;
-    var popSum = 0
-    for (var index = 0; index < response.length; index++) {
-        popSum += response[index].track.popularity;
+function avgPopularity(id, amount) {
+    var items = scoreObj[id].items;
+    var avgPop = 0
+    for (var i = 0; i < amount; i++) {
+        sum += items[i].popularity;
     }
-    popSum = popSum / response.length
-    console.log("Recetly played popsum ", popSum)
-}
-
-function topArtists() {
-    // Finds average popularity of their top artists
-    var response = this.response.items;
-    var popSum = 0
-    for (var index = 0; index < response.length; index++) {
-        popSum += response[index].popularity;
-    }
-    popSum = popSum / response.length
-    console.log("Top artist popsum ", popSum)
-}
-
-function topTracks() {
-    // Finds average popularity of their top tracks
-    var response = this.response.items;
-    var popSum = 0
-    for (var index = 0; index < response.length; index++) {
-        popSum += response[index].popularity;
-    }
-    popSum = popSum / response.length
-    console.log("Top track popsum ", popSum)
-}
-
-function savedAlbums() {
-    // Finds average popularity of their saved albums
-    var response = this.response.items;
-    var popSum = 0
-    for (var index = 0; index < response.length; index++) {
-        popSum += response[index].album.popularity;
-    }
-    popSum = popSum / response.length
-    console.log("Saved album popsum ", popSum)
+    avgPop = avgPop / amount
+    return avgPop;
 }
 
 /*          Utility functions           */
