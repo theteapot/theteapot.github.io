@@ -68,9 +68,14 @@ function addRangeInput(id, onchange) {
     rangeInput.setAttribute("max", scoreObj[id].items.length);
     rangeInput.setAttribute('id', id)
 
+    var rangeLabel = document.createElement("label")
+    rangeLabel.setAttribute("for", id)
+    rangeLabel.innerHTML = id;
+
     var rangeDisplay = document.createElement("h2")
     rangeDisplay.setAttribute("id", id + "Display")
 
+    rangeFragment.appendChild(rangeLabel);
     rangeFragment.appendChild(rangeDisplay);
     rangeFragment.appendChild(rangeInput);
 
@@ -85,6 +90,12 @@ function handleRangeChange(element) {
     var id = element.getAttribute("id")
     var displayNode = document.getElementById(id + "Display");
     displayNode.innerHTML = avgPopularity(id, amount)
+    updateAggregate()
+}
+
+function updateAggregate() {
+    // updates some large number to measure average hipsterness
+
 }
 
 /*          Data handling functions             */
@@ -153,7 +164,7 @@ function avgPopularity(id, amount) {
         avgPop += items[i].popularity;
     }
     avgPop = avgPop / amount
-    return avgPop;
+    return (isNaN(avgPop) ? 0 : avgPop);
 }
 
 /*          Utility functions           */
