@@ -124,7 +124,7 @@ function avgPopularity(id, amount) {
     var items = scoreObj[id].items;
     var avgPop = 0
     for (var i = 0; i < amount; i++) {
-        sum += items[i].popularity;
+        avgPop += items[i].popularity;
     }
     avgPop = avgPop / amount
     return avgPop;
