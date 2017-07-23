@@ -58,28 +58,31 @@ function authorizeApi() {
 function addRangeInput(id, onchange) {
     // Add range slider and associated display
     // n.b. if elementId = artists then displayId = artistsDisplay
-    var rangeFragment = document.createDocumentFragment();
+    var rangeDiv = document.createElement("div")
     var rangeInput = document.createElement("input");
     rangeInput.setAttribute("type", "range");
     rangeInput.setAttribute("value", "20")
     rangeInput.setAttribute("min", 0);
     rangeInput.setAttribute("onchange", "handleRangeChange(this)")
     rangeInput.setAttribute('step', 1)
+    rangeInput.setAttribute('float', "left")
     rangeInput.setAttribute("max", scoreObj[id].items.length);
     rangeInput.setAttribute('id', id)
 
     var rangeLabel = document.createElement("label")
     rangeLabel.setAttribute("for", id)
+    rangeLabel.setAttribute("float", "left")
     rangeLabel.innerHTML = id;
 
     var rangeDisplay = document.createElement("h2")
     rangeDisplay.setAttribute("id", id + "Display")
+    rangeDisplay.setAttribute("float", "left")
 
-    rangeFragment.appendChild(rangeLabel);
-    rangeFragment.appendChild(rangeDisplay);
-    rangeFragment.appendChild(rangeInput);
+    rangeDiv.appendChild(rangeLabel);
+    rangeDiv.appendChild(rangeDisplay);
+    rangeDiv.appendChild(rangeInput);
 
-    document.getElementById("rangeInputs").appendChild(rangeFragment);
+    document.getElementById("rangeInputs").appendChild(rangeDiv);
     
 }
 
