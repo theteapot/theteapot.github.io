@@ -61,8 +61,9 @@ function addRangeInput(id, onchange) {
     var rangeFragment = document.createDocumentFragment();
     var rangeInput = document.createElement("input");
     rangeInput.setAttribute("type", "range");
+    rangeInput.setAttribute("value", "20")
     rangeInput.setAttribute("min", 0);
-    rangeInput.setAttribute("onchange", onchange.name + "(this)")
+    rangeInput.setAttribute("onchange", "handleRangeChange(this")
     rangeInput.setAttribute('step', 1)
     rangeInput.setAttribute("max", scoreObj[id].items.length);
     rangeInput.setAttribute('id', id)

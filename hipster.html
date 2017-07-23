@@ -15,6 +15,9 @@
         <div id="landingPage">
             <form action="javascript:generateUrl()">
                 <fieldset id="rangeInputs">
+                    <input type="range" id="artists" min="0" max="50" onchange="handleRangeChange(this)" value="0"/>
+                    <input type="range" id="tracks" min="0" max="50" onchange="handleRangeChange(this)" value="0"/>
+                    <input type="range" id="albums" min="0" max="50" onchange="handleRangeChange(this)" value="0"/>
                 </fieldset>
             </form>
         </div>
