@@ -65,7 +65,7 @@ function addRangeInput(id, onchange) {
     rangeInput.setAttribute("min", 0);
     rangeInput.setAttribute("onchange", onchange.name + "()")
     rangeInput.setAttribute('step', 1)
-    rangeInput.setAttribute("max", scoreObj.id.items.length);
+    rangeInput.setAttribute("max", scoreObj[id].items.length);
     rangeInput.setAttribute('id', id)
 
     var rangeDisplay = document.createElement("h2")
