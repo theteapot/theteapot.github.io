@@ -94,7 +94,7 @@ var scoreObj = {}
 function requestApiObjects(accessToken) {
     var requestFactory = new RequestFactory(accessToken);
 
-    //requestFactory.createRequest("https://api.spotify.com/v1/me/player/recently-played", {"limit":"50"}, recieveResponse).send();
+    requestFactory.createRequest("https://api.spotify.com/v1/me/player/recently-played", {"limit":"50"}, recieveResponse).send();
     requestFactory.createRequest("https://api.spotify.com/v1/me/top/artists", {"limit":"50"}, recieveResponse).send();
     requestFactory.createRequest("https://api.spotify.com/v1/me/top/tracks", {"limit":"50"}, recieveResponse).send();
     requestFactory.createRequest("https://api.spotify.com/v1/me/albums", {"limit": "50"}, recieveResponse).send()
@@ -105,11 +105,39 @@ function recieveResponse() {
     // Takes the response and passes it to the appropriate part of scoreObj
     var response = this.response;
     console.log(response)
+
     // Finds the right category by looking at href
     var start = response.href.lastIndexOf("/") + 1
     var end = response.href.indexOf("?") !== -1 ? response.href.indexOf("?") : response.href.length - 1
     var name = response.href.slice(start, end)
     console.log("Recieved response %s", name)
+
+
+    //Different responses have different structures, must enusre array of objects with 'popularity' property
+    var popularityItems;
+    switch (name) {
+        case "artist":
+        case "track":
+            popularityItems = response.items
+            break;
+        case "recently-played":
+            popularityItems = []
+            for (var i = 0; i < response.items.length; i++) {
+                var element = popularityItems[i].track;
+                popularityItems.push(element)
+            }
+            break;
+        case "album":
+            popularityItems = []
+            for (var i = 0; i < response.items.length; i++) {
+                var element = response.items[i].album;
+                popularityItems.push(element)
+            }
+            break;
+        default:
+            console.log("did not recognise name %s", name);
+            break;
+    }
 
     if (Object.keys(scoreObj).indexOf(name) === -1) { // sees if the entry exists in the score object
         scoreObj[name] = {"score": 0, "items": response.items}
