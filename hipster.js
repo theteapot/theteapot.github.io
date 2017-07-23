@@ -122,7 +122,7 @@ function recieveResponse() {
             break;
         case "recently-played":
             for (var i = 0; i < response.items.length; i++) {
-                var element = popularityItems[i].track;
+                var element = response.items[i].track;
                 popularityItems.push(element)
             }
             break;
