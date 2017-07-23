@@ -59,7 +59,6 @@ function addRangeInput(id, onchange) {
     // Add range slider and associated display
     // n.b. if elementId = artists then displayId = artistsDisplay
     var rangeFragment = document.createDocumentFragment();
-
     var rangeInput = document.createElement("INPUT");
     rangeInput.setAttribute("type", "range");
     rangeInput.setAttribute("min", 0);
