@@ -79,8 +79,8 @@ function addRangeInput(id, onchange) {
     rangeDisplay.setAttribute("float", "left")
 
     rangeDiv.appendChild(rangeLabel);
-    rangeDiv.appendChild(rangeDisplay);
     rangeDiv.appendChild(rangeInput);
+    rangeDiv.appendChild(rangeDisplay);
 
     document.getElementById("rangeInputs").appendChild(rangeDiv);
     
@@ -98,6 +98,14 @@ function handleRangeChange(element) {
 
 function updateAggregate() {
     // updates some large number to measure average hipsterness
+    // get every score by looking for id's in scoreObj and getting the innerHtml from displays
+    var aggSum = 0
+    for (var i = 0; i < Object.keys(scoreObj).length; i++) {
+        var id = Object.keys(scoreObj)[i]
+        var score = parseFloat(document.getElementById(id + "Display").innerHTML);
+        aggSum += score;
+    }
+    document.getElementById("aggregateScore").innerHTML = aggSum
 
 }
 
