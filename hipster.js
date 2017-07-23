@@ -100,11 +100,13 @@ function updateAggregate() {
     // updates some large number to measure average hipsterness
     // get every score by looking for id's in scoreObj and getting the innerHtml from displays
     var aggSum = 0
+    var nonZero = 0; // how many elements are numbers, not empty strings or 0
     for (var i = 0; i < Object.keys(scoreObj).length; i++) {
         var id = Object.keys(scoreObj)[i]
         var score = parseFloat(document.getElementById(id + "Display").innerHTML);
-        aggSum += score;
+        (isNan(score) ? 0 : aggSum += score, nonZero += 1); // if score is a number, increase score and nonZero
     }
+    aggSum = aggSum / nonZero
     document.getElementById("aggregateScore").innerHTML = aggSum
 
 }
