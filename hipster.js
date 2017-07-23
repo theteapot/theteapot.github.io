@@ -59,10 +59,10 @@ function addRangeInput(id, onchange) {
     // Add range slider and associated display
     // n.b. if elementId = artists then displayId = artistsDisplay
     var rangeFragment = document.createDocumentFragment();
-    var rangeInput = document.createElement("INPUT");
+    var rangeInput = document.createElement("input");
     rangeInput.setAttribute("type", "range");
     rangeInput.setAttribute("min", 0);
-    rangeInput.setAttribute("onchange", onchange.name + "()")
+    rangeInput.setAttribute("onchange", onchange.name + "(this)")
     rangeInput.setAttribute('step', 1)
     rangeInput.setAttribute("max", scoreObj[id].items.length);
     rangeInput.setAttribute('id', id)
@@ -72,20 +72,23 @@ function addRangeInput(id, onchange) {
 
     rangeFragment.appendChild(rangeDisplay);
     rangeFragment.appendChild(rangeInput);
-    
+
     document.getElementById("rangeInputs").appendChild(rangeFragment);
+    
 }
 
-function handleRangeChange() {
+function handleRangeChange(element) {
     // Update the value in the display
-    console.log(this)
-    var amount = this.value;
-    var id = this.getAttribute("id")
+    console.log(element)
+    var amount = element.value;
+    var id = element.getAttribute("id")
     var displayNode = document.getElementById(id + "Display");
     displayNode.innerHTML = avgPopularity(id, amount)
 }
 
 /*          Data handling functions             */
+
+var scoreObj = {}
 
 function requestApiObjects(accessToken) {
     var requestFactory = new RequestFactory(accessToken);
@@ -105,7 +108,7 @@ function recieveResponse() {
     var start = response.href.lastIndexOf("/") + 1
     var end = response.href.indexOf("?") !== -1 ? response.href.indexOf("?") : response.href.length - 1
     var name = response.href.slice(start, end)
-    console.log(name)
+    console.log("Recieved response %s", name)
 
     if (Object.keys(scoreObj).indexOf(name) === -1) { // sees if the entry exists in the score object
         scoreObj[name] = {"score": 0, "items": response.items}
@@ -113,10 +116,8 @@ function recieveResponse() {
         scoreObj[name].items = response.items;
     }
     addRangeInput(name, handleRangeChange) // once the data is loaded add the range slider to control popularity
-    console.log(scoreObj)
+    console.log("Updated score obj %s", scoreObj)
 }
-
-var scoreObj = {}
 
 function avgPopularity(id, amount) {
     var items = scoreObj[id].items;
