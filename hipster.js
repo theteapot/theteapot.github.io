@@ -114,21 +114,19 @@ function recieveResponse() {
 
 
     //Different responses have different structures, must enusre array of objects with 'popularity' property
-    var popularityItems;
+    var popularityItems = [];
     switch (name) {
         case "artist":
         case "track":
             popularityItems = response.items
             break;
         case "recently-played":
-            popularityItems = []
             for (var i = 0; i < response.items.length; i++) {
                 var element = popularityItems[i].track;
                 popularityItems.push(element)
             }
             break;
         case "album":
-            popularityItems = []
             for (var i = 0; i < response.items.length; i++) {
                 var element = response.items[i].album;
                 popularityItems.push(element)
