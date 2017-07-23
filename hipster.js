@@ -80,7 +80,7 @@ function addRangeInput(id, onchange) {
 
 function handleRangeChange(element) {
     // Update the value in the display
-    console.log(element)
+    console.log("Got onchange event from %s", element.getAttribute('id'))
     var amount = element.value;
     var id = element.getAttribute("id")
     var displayNode = document.getElementById(id + "Display");
@@ -138,12 +138,12 @@ function recieveResponse() {
     }
 
     if (Object.keys(scoreObj).indexOf(name) === -1) { // sees if the entry exists in the score object
-        scoreObj[name] = {"score": 0, "items": response.items}
+        scoreObj[name] = {"score": 0, "items": popularityItems}
     } else {
-        scoreObj[name].items = response.items;
+        scoreObj[name].items = popularityItems;
     }
     addRangeInput(name, handleRangeChange) // once the data is loaded add the range slider to control popularity
-    console.log("Updated score obj %s", scoreObj)
+    console.log("Updated score obj %s", JSON.stringify(scoreObj))
 }
 
 function avgPopularity(id, amount) {
