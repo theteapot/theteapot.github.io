@@ -1,3 +1,5 @@
+/*                        Global Vars                                        */
+var scoreObj = {}
 
 /*              Classes             */
 
@@ -29,8 +31,6 @@ class RequestFactory {
         return request;
     }
 }
-
-/*          UI functions            */
 
 function handleUrl() {
     // Check if access is due to redirect from spotify
@@ -108,12 +108,9 @@ function updateAggregate() {
     }
     aggSum = aggSum / nonZero
     document.getElementById("aggregateScore").innerHTML = aggSum
-
 }
 
 /*          Data handling functions             */
-
-var scoreObj = {}
 
 function requestApiObjects(accessToken) {
     var requestFactory = new RequestFactory(accessToken);
@@ -194,4 +191,15 @@ function parseUrl(url) {
     }
     console.log("Url object %s", JSON.stringify(urlObj))
     return urlObj;
+}
+
+function stringToColor(string) {
+    var color = hashCode(string)
+    var maxColor = parseInt("0xFFFFFF", 16);
+    var hexColor = (color % maxColor).toString(16);
+    return hexColor
+}
+
+function hashCode(s){
+      return s.split("").reduce(function(a,b){a=((a<<13)-a)+b.charCodeAt(0);return a&a},0);              
 }
