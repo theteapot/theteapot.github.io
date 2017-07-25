@@ -13,29 +13,35 @@
     display: inline-block;
     width: 25%;
     margin-right: 24%;
-    text-align: center;
+    text-align: left;
     font-size: 11em;
 }
 
 .rangeLabel {
     width: 100px;
-    display: inline-block;
-    text-align: center;
+    display: block;
+    float: inline-start;
+}
+
+.rangeInput {
+    width: 40%;
 }
 
 .rangeDisplay {
     font-size: 2em;
+    color: #1DB954;
+    width: 10%;
 }
 
 body { 
     background-color: #282828;
     color: #A0A0A0;
     font-family: "Courier New", courier, monospace;
-    border: 0px;
 }
 
 #authorizeButton {
     background-color: #282828;
+    color: #A0A0A0;
     display: block;
     font-size: 4em;
     height: 150px;
@@ -44,6 +50,7 @@ body {
     margin-top: 15%;
     transition: all 0.3s;
     width: 300px;
+    border: 0px;
 }
 
 #authorizeButton:hover {

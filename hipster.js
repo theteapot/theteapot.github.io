@@ -39,13 +39,13 @@ function handleUrl() {
     console.log(Object.keys(urlParams), urlParams.constructor)
     if (Object.keys(urlParams).length === 1 && urlParams.constructor === Object) { //check to see if url has no parameters
         console.log("Auth page")
-        document.getElementById("beginPage").setAttribute("style", "visibility: visible");
-        document.getElementById("landingPage").setAttribute("style", "visibility: hidden");
+        document.getElementById("beginPage").setAttribute("style", "display: block");
+        document.getElementById("landingPage").setAttribute("style", "display: none");
     } else {
         console.log("Landing page")
         requestApiObjects(urlParams.access_token);
-        document.getElementById("beginPage").setAttribute("style", "visibility: hidden");
-        document.getElementById("landingPage").setAttribute("style", "visibility: visible");
+        document.getElementById("beginPage").setAttribute("style", "display: none");
+        document.getElementById("landingPage").setAttribute("style", "display: block");
     }
 }
 
@@ -65,9 +65,9 @@ function addRangeInput(id, onchange) {
     rangeInput.setAttribute("min", 0);
     rangeInput.setAttribute("onchange", "handleRangeChange(this)")
     rangeInput.setAttribute('step', 1)
-    rangeInput.setAttribute('float', "left")
     rangeInput.setAttribute("max", scoreObj[id].items.length);
     rangeInput.setAttribute('id', id)
+    rangeInput.setAttribute("class", "rangeInput");
 
     var rangeLabel = document.createElement("label")
     rangeLabel.setAttribute("for", id)
