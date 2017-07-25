@@ -104,10 +104,9 @@ function updateAggregate() {
     for (var i = 0; i < Object.keys(scoreObj).length; i++) {
         var id = Object.keys(scoreObj)[i]
         var score = parseFloat(document.getElementById(id + "Display").innerHTML);
-        console.log(score === 0, score == 0, typeof(score));
         (isNaN(score) || score === 0) ? 0 : (aggSum += score, nonZero += 1); // if score is a number, increase score and nonZero
     }
-    aggSum = aggSum / nonZero
+    aggSum = Math.round(aggSum / nonZero, 1)
     document.getElementById("aggregateScore").innerHTML = aggSum
 }
 
@@ -169,12 +168,13 @@ function recieveResponse() {
 }
 
 function avgPopularity(id, amount) {
+    //Returns the average popularity rounded to 1dp
     var items = scoreObj[id].items;
     var avgPop = 0
     for (var i = 0; i < amount; i++) {
         avgPop += items[i].popularity;
     }
-    avgPop = avgPop / amount
+    avgPop = Math.round(avgPop / amount, 1)
     return (isNaN(avgPop) ? 0 : avgPop);
 }
 
