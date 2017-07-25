@@ -55,6 +55,8 @@ function authorizeApi() {
     window.location.assign(authUrl)
 }
 
+/*              UI functions            */
+
 function addRangeInput(id, onchange) {
     // Add range slider and associated display
     // n.b. if elementId = artists then displayId = artistsDisplay
@@ -113,6 +115,10 @@ function updateAggregate() {
     document.getElementById("aggregateScore").innerHTML = aggSum
 }
 
+function createTables() {
+
+}
+
 /*          Data handling functions             */
 
 function requestApiObjects(accessToken) {
@@ -167,6 +173,8 @@ function recieveResponse() {
         scoreObj[name].items = popularityItems;
     }
     addRangeInput(name, handleRangeChange) // once the data is loaded add the range slider to control popularity
+    scoreObj[name].items = popularityObjectSort(scoreObj[name].items, "popularity")
+    console.log(getTopElements("asc", 3, name))
     console.log("Updated score obj %s", JSON.stringify(scoreObj))
 }
 
@@ -181,6 +189,18 @@ function avgPopularity(id, amount) {
     avgPop = isNaN(avgPop) ? 0 : avgPop
     avgPop = String("0" + avgPop).slice(-2); //return 01 instead of 1, etc.
     return avgPop
+}
+
+function getTopElements(order, amount, id) {
+    var objects = scoreObj[id].items;
+    if (order === "asc") {
+        return objects.slice(0, amount)
+    } else if (order === "desc") {
+        return objects.slice(amount * -1)
+    } else {
+        throw Error;
+    }
+
 }
 
 /*          Utility functions           */
@@ -208,4 +228,11 @@ function stringToColor(string) {
 
 function hashCode(s){
       return s.split("").reduce(function(a,b){a=((a<<13)-a)+b.charCodeAt(0);return a&a},0);              
+}
+
+function popularityObjectSort(array, key) {
+    return array.sort(function(a, b) {
+        let x = a[key], y = b[key];
+        return ((x < y) ? -1 : ((x > y) ? 1 : 0))
+    })
 }
