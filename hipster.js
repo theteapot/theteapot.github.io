@@ -123,10 +123,12 @@ function addPopularityTable(objects, type) {
             tableData.names = objects.map(obj => obj.name);
             tableData.artists = objects.map(obj => obj.artists[0].name);
             tableData.year = objects.map(obj => obj.release_date);
-        case: "tracks"
-
-
+        case "tracks":
+            tableData.names = objects.map(obj => obj.name);
+            tableData.artists = objects.map(obj => obj.artists[0].name);
+            tableData.year = objects.map(obj => obj.release_date);
     }
+    console.log("Popularity data %s", tableData)
 }
 
 /*          Data handling functions             */
