@@ -189,7 +189,7 @@ function recieveResponse() {
     // once the data is loaded add the range slider to control amount considered in averages
     addRangeInput(name, handleRangeChange) 
     // create a table highlighting popular/unpopular items
-    addPopularityTable(getTopElements(scoreObj[name].items), name);
+    addPopularityTable(getTopElements("asc", 3, name), name);
 
     console.log("Updated score obj %s", JSON.stringify(scoreObj))
 }
