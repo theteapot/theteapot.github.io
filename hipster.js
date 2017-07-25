@@ -121,8 +121,8 @@ function addPopularityTable(objects, type) {
     switch (type) {
         case "albums":
             tableData.name = objects.map(function(obj) {return obj.name});
-            tableData.albums.artist = objects.map(function(obj) {return obj.artists[0].name});
-            tableData.albums.popularity = objects.map(function(obj) {return obj.popularity})
+            tableData.artist = objects.map(function(obj) {return obj.artists[0].name});
+            tableData.popularity = objects.map(function(obj) {return obj.popularity})
             break;
 
         case "tracks":
@@ -138,9 +138,9 @@ function addPopularityTable(objects, type) {
             break;
         
         case "recently-played":
-            tableData.name = objects.map(function(obj) {return obj.track.name})
-            tableData.artist = objects.map(function(obj) {return obj.track.artists[0].name})
-            tableData.popularity = objects.map(function(obj) {return obj.track.popularity})
+            tableData.name = objects.map(function(obj) {return obj.name})
+            tableData.artist = objects.map(function(obj) {return obj.artists[0].name})
+            tableData.popularity = objects.map(function(obj) {return obj.popularity})
             break;
     }
     console.log("Popularity data %s", JSON.stringify(tableData))
