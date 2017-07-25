@@ -1,6 +1,5 @@
 /*                        Global Vars                                        */
 var scoreObj = {}
-var tableData = {}
 
 /*              Classes             */
 
@@ -117,6 +116,7 @@ function updateAggregate() {
 }
 
 function addPopularityTable(objects, type) {
+    var tableData = {}
     // elements to consider based on type of object
     switch (type) {
         case "albums":
@@ -143,7 +143,35 @@ function addPopularityTable(objects, type) {
             tableData.popularity = objects.map(function(obj) {return obj.popularity})
             break;
     }
-    console.log("Popularity data %s", JSON.stringify(tableData))
+    var keys = Object.keys(tableData)
+
+    // Generate popularity table element
+    var table = document.createElement("table")
+
+    // Create table headers
+    var headerRows = document.createElement('tr')
+    for (var i = 0; i < keys.length; i++) {
+        var headerRow = document.createElement('th');
+        headerRow.innerHTML = keys[i];
+        headerRows.appendChild(headerRow);
+    } 
+    table.appendChild(headerRows);
+
+    // Create table rows
+   for (var i = 0; i < keys.length; i++) {
+       var pos = i;
+       var entryRow = document.createElement('tr')
+       for (var j = 0; j < keys.length; j++) {
+           var key = keys[j]
+           var entryElement = document.createElement('td')
+           entryElement.innerHTML = tableData[j][i]
+           entryRow.appendChild(entryElement);
+       }  
+       table.appendChild(entryRow);
+    }
+
+    document.getElementById("popularityTables").appendChild(table);
+
 }
 
 /*          Data handling functions             */
