@@ -105,7 +105,7 @@ function updateAggregate() {
         var id = Object.keys(scoreObj)[i]
         var score = parseFloat(document.getElementById(id + "Display").innerHTML);
         console.log(score === 0, score == 0, typeof(score));
-        ((isNaN(score) || score === 0) ? 0 : aggSum += score, nonZero += 1); // if score is a number, increase score and nonZero
+        (isNaN(score) || score === 0) ? 0 : (aggSum += score, nonZero += 1); // if score is a number, increase score and nonZero
     }
     aggSum = aggSum / nonZero
     document.getElementById("aggregateScore").innerHTML = aggSum
