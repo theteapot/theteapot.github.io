@@ -1,6 +1,7 @@
 #rangeInputs {
     width: 100%;
     text-align: right;
+    margin-top: 15%;
 }
 
 #rangeInputForm {
@@ -15,21 +16,25 @@
     margin-right: 24%;
     text-align: left;
     font-size: 11em;
+    color: #1DB954;
 }
 
 .rangeLabel {
     width: 100px;
     display: block;
     float: inline-start;
+    padding-top: 9px;
+    padding-bottom: 9px;
 }
 
 .rangeInput {
     width: 40%;
+    padding-top: 9px;
+    padding-bottom: 9px;
 }
 
 .rangeDisplay {
     font-size: 2em;
-    color: #1DB954;
     width: 10%;
 }
 
