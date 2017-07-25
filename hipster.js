@@ -112,7 +112,7 @@ function updateAggregate() {
         (isNaN(score) || score === 0) ? 0 : (aggSum += score, nonZero += 1); // if score is a number, increase score and nonZero
     }
     aggSum = Math.round(aggSum / nonZero, 1)
-    document.getElementById("aggregateScore").innerHTML = aggSum
+    document.getElementById("aggregateScore").innerHTML = aggSum + "/100"
 }
 
 function addPopularityTable(objects, type) {
@@ -122,13 +122,24 @@ function addPopularityTable(objects, type) {
         case "albums":
             tableData.names = objects.map(obj => obj.name);
             tableData.artists = objects.map(obj => obj.artists[0].name);
-            tableData.year = objects.map(obj => obj.release_date);
+            tableData.popularity = objects.map(obj => obj.popularity)
+
         case "tracks":
             tableData.names = objects.map(obj => obj.name);
             tableData.artists = objects.map(obj => obj.artists[0].name);
-            tableData.year = objects.map(obj => obj.release_date);
+            tableData.popularity = objects.map(obj => obj.popularity)
+
+        case "artist":
+            tableData.names = objects.map(obj => obj.name);
+            tableData.popularity = objects.map(obj => obj.popularity)
+            tableData.followers = objects.map(obj => obj.followers.total)
+        
+        case "recently-played":
+            tableData.name = objects.map(obj => obj.track.name)
+            tableData.artist = objects.map(obj => obj.track.artists[0].name)
+            tableData.popularity = objects.map(obj => obj.track.popularity)
     }
-    console.log("Popularity data %s", tableData)
+    console.log("Popularity data %s", JSON.stringify(tableData))
 }
 
 /*          Data handling functions             */
