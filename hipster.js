@@ -120,27 +120,27 @@ function addPopularityTable(objects, type) {
     // elements to consider based on type of object
     switch (type) {
         case "albums":
-            tableData.albums.name = objects.map(function(obj) {return obj.name});
+            tableData.name = objects.map(function(obj) {return obj.name});
             tableData.albums.artist = objects.map(function(obj) {return obj.artists[0].name});
             tableData.albums.popularity = objects.map(function(obj) {return obj.popularity})
             break;
 
         case "tracks":
-            tableData.tracks.name = objects.map(function(obj) {return obj.name});
-            tableData.albums.artist = objects.map(function(obj) {return obj.artists[0].name});
-            tableData.tracks.popularity = objects.map(function(obj) {return obj.popularity})
+            tableData.name = objects.map(function(obj) {return obj.name});
+            tableData.artist = objects.map(function(obj) {return obj.artists[0].name});
+            tableData.popularity = objects.map(function(obj) {return obj.popularity})
             break;
 
         case "artists":
-            tableData.artists.name = objects.map(function(obj) {return obj.name});
-            tableData.artists.popularity = objects.map(function(obj) {return obj.popularity})
-            tableData.artists.followers = objects.map(function(obj) {return obj.followers.total})
+            tableData.name = objects.map(function(obj) {return obj.name});
+            tableData.popularity = objects.map(function(obj) {return obj.popularity})
+            tableData.followers = objects.map(function(obj) {return obj.followers.total})
             break;
         
         case "recently-played":
-            tableData.recentlyPlayed.name = objects.map(function(obj) {return obj.track.name})
-            tableData.recentlyPlayed.artist = objects.map(function(obj) {return obj.track.artists[0].name})
-            tableData.recentlyPlayed.popularity = objects.map(function(obj) {return obj.track.popularity})
+            tableData.name = objects.map(function(obj) {return obj.track.name})
+            tableData.artist = objects.map(function(obj) {return obj.track.artists[0].name})
+            tableData.popularity = objects.map(function(obj) {return obj.track.popularity})
             break;
     }
     console.log("Popularity data %s", JSON.stringify(tableData))
