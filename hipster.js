@@ -120,24 +120,24 @@ function addPopularityTable(objects, type) {
     var tableData = {}
     switch (type) {
         case "albums":
-            tableData.names = objects.map(obj => obj.name);
-            tableData.artists = objects.map(obj => obj.artists[0].name);
-            tableData.popularity = objects.map(obj => obj.popularity)
+            tableData.name = objects.map(function(obj) {return obj.name});
+            tableData.artist = objects.map(function(obj) {return obj.artists[0].name});
+            tableData.popularity = objects.map(function(obj) {return obj.popularity})
 
         case "tracks":
-            tableData.names = objects.map(obj => obj.name);
-            tableData.artists = objects.map(obj => obj.artists[0].name);
-            tableData.popularity = objects.map(obj => obj.popularity)
+            tableData.name = objects.map(function(obj) {return obj.name});
+            tableData.artist = objects.map(obj => obj.artists[0].name);
+            tableData.popularity = objects.map(function(obj) {return obj.popularity})
 
         case "artists":
-            tableData.names = objects.map(obj => obj.name);
-            tableData.popularity = objects.map(obj => obj.popularity)
-            tableData.followers = objects.map(obj => obj.followers.total)
+            tableData.name = objects.map(function(obj) {return obj.name});
+            tableData.popularity = objects.map(function(obj) {return obj.popularity})
+            tableData.followers = objects.map(function(obj) {return obj.followers.total})
         
         case "recently-played":
-            tableData.name = objects.map(obj => obj.track.name)
-            tableData.artist = objects.map(obj => obj.track.artists[0].name)
-            tableData.popularity = objects.map(obj => obj.track.popularity)
+            tableData.name = objects.map(function(obj) {return obj.track.name})
+            tableData.artist = objects.map(function(obj) {return obj.track.artists[0].name})
+            tableData.popularity = objects.map(function(obj) {return obj.track.popularity})
     }
     console.log("Popularity data %s", JSON.stringify(tableData))
 }
