@@ -129,7 +129,7 @@ function addPopularityTable(objects, type) {
             tableData.artists = objects.map(obj => obj.artists[0].name);
             tableData.popularity = objects.map(obj => obj.popularity)
 
-        case "artist":
+        case "artists":
             tableData.names = objects.map(obj => obj.name);
             tableData.popularity = objects.map(obj => obj.popularity)
             tableData.followers = objects.map(obj => obj.followers.total)
