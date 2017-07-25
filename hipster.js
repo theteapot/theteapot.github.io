@@ -115,8 +115,18 @@ function updateAggregate() {
     document.getElementById("aggregateScore").innerHTML = aggSum
 }
 
-function createTables() {
+function addPopularityTable(objects, type) {
+    // elements to consider based on type of object
+    var tableData = {}
+    switch (type) {
+        case "albums":
+            tableData.names = objects.map(obj => obj.name);
+            tableData.artists = objects.map(obj => obj.artists[0].name);
+            tableData.year = objects.map(obj => obj.release_date);
+        case: "tracks"
 
+
+    }
 }
 
 /*          Data handling functions             */
@@ -172,10 +182,13 @@ function recieveResponse() {
     } else {
         scoreObj[name].items = popularityItems;
     }
-    addRangeInput(name, handleRangeChange) // once the data is loaded add the range slider to control popularity
+    // sort the data in order of popularity
     scoreObj[name].items = popularityObjectSort(scoreObj[name].items, "popularity")
-    console.log(getTopElements("asc", 3, name))
-    console.log(getTopElements("desc", 3, name))
+    // once the data is loaded add the range slider to control amount considered in averages
+    addRangeInput(name, handleRangeChange) 
+    // create a table highlighting popular/unpopular items
+    addPopularityTable(getTopElements(scoreObj[name].items), name);
+
     console.log("Updated score obj %s", JSON.stringify(scoreObj))
 }
 
