@@ -175,6 +175,7 @@ function recieveResponse() {
     addRangeInput(name, handleRangeChange) // once the data is loaded add the range slider to control popularity
     scoreObj[name].items = popularityObjectSort(scoreObj[name].items, "popularity")
     console.log(getTopElements("asc", 3, name))
+    console.log(getTopElements("desc", 3, name))
     console.log("Updated score obj %s", JSON.stringify(scoreObj))
 }
 
