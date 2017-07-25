@@ -164,7 +164,7 @@ function addPopularityTable(objects, type) {
        for (var j = 0; j < keys.length; j++) {
            var key = keys[j]
            var entryElement = document.createElement('td')
-           entryElement.innerHTML = tableData[j][i]
+           entryElement.innerHTML = tableData[key][i]
            entryRow.appendChild(entryElement);
        }  
        table.appendChild(entryRow);
