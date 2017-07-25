@@ -79,6 +79,7 @@ function addRangeInput(id, onchange) {
     rangeDisplay.setAttribute("id", id + "Display")
     rangeDisplay.setAttribute("float", "left")
     rangeDisplay.setAttribute("class", "rangeDisplay")
+    rangeDisplay.innerHTML = "00"
 
     rangeDiv.appendChild(rangeLabel);
     rangeDiv.appendChild(rangeInput);
@@ -177,7 +178,9 @@ function avgPopularity(id, amount) {
         avgPop += items[i].popularity;
     }
     avgPop = Math.round(avgPop / amount, 1)
-    return (isNaN(avgPop) ? 0 : avgPop);
+    avgPop = isNaN(avgPop) ? 0 : avgPop
+    avgPop = String("0" + avgPop).slice(-2); //return 01 instead of 1, etc.
+    return avgPop
 }
 
 /*          Utility functions           */
