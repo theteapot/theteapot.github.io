@@ -1,5 +1,6 @@
 /*                        Global Vars                                        */
 var scoreObj = {}
+var tableData = {}
 
 /*              Classes             */
 
@@ -117,7 +118,6 @@ function updateAggregate() {
 
 function addPopularityTable(objects, type) {
     // elements to consider based on type of object
-    var tableData = {}
     switch (type) {
         case "albums":
             tableData.name = objects.map(function(obj) {return obj.name});
