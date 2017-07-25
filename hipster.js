@@ -71,12 +71,14 @@ function addRangeInput(id, onchange) {
 
     var rangeLabel = document.createElement("label")
     rangeLabel.setAttribute("for", id)
+    rangeLabe.setAttribute("class", "rangeLabel")
     rangeLabel.setAttribute("float", "left")
     rangeLabel.innerHTML = id;
 
     var rangeDisplay = document.createElement("em")
     rangeDisplay.setAttribute("id", id + "Display")
     rangeDisplay.setAttribute("float", "left")
+    rangeDisplay.setAttribute("class", "rangeDisplay")
 
     rangeDiv.appendChild(rangeLabel);
     rangeDiv.appendChild(rangeInput);

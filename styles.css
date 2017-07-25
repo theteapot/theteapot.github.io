@@ -1,7 +1,27 @@
 #rangeInputs {
-    width: 50%
+    width: 50%;
+}
+
+#rangeInputForm {
+    display: inline-block;
+    width: 25%;
+    margin-left: 25%;
 }
 
 #aggregateScore {
-    width: 50%
+    display: inline-block;
+    width: 25%;
+    margin-right: 24%;
+    text-align: center;
+    font-size: 11em;
+}
+
+.rangeLabel {
+    width: 100px;
+    display: inline-block;
+    text-align: center;
+}
+
+.rangeDisplay {
+    font-size: 2em;
 }
