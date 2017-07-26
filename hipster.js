@@ -145,18 +145,19 @@ function addPopularityTable(objects, type, dir) {
     }
     var keys = Object.keys(tableData)
 
-    var tableFragment = document.createDocumentFragment();
+    // Generate popularity table element
+    var table = document.createElement("table")
+    table.setAttribute('class', 'popTable') 
 
     // Generate header caption
     var caption = document.createElement("caption")
     caption.innerHTML = ((dir === "asc") ? "Top" : "Bottom") + " " + objects.length + " " + type
+    caption.setAttribute('class', 'popCaption')
+    table.appendChild(caption);
     
-
-    // Generate popularity table element
-    var table = document.createElement("table")    
-    // Create table fully before adding to the tableFragment
     // Create table headers
     var headerRows = document.createElement('tr')
+    headerRows.setAttribute('class', 'popHeaderRow')
     for (var i = 0; i < keys.length; i++) {
         var headerRow = document.createElement('th');
         headerRow.innerHTML = keys[i];
@@ -168,6 +169,7 @@ function addPopularityTable(objects, type, dir) {
    for (var i = 0; i < keys.length; i++) {
        var pos = i;
        var entryRow = document.createElement('tr')
+       entryRow.setAttribute('class', 'popEntryRow')
        for (var j = 0; j < keys.length; j++) {
            var key = keys[j]
            var entryElement = document.createElement('td')
@@ -177,9 +179,8 @@ function addPopularityTable(objects, type, dir) {
        table.appendChild(entryRow);
     }
 
-    tableFragment.appendChild(caption);
-    tableFragment.appendChild(table);
-    document.getElementById("popularityTables").appendChild(tableFragment);
+    table.appendChild(table);
+    document.getElementById("popularityTables").appendChild(table);
 
 }
 
