@@ -157,9 +157,9 @@ function addPopularityTable(objects, type, dir) {
     
     // Create table headers
     var headerRows = document.createElement('tr')
-    headerRows.setAttribute('class', 'popHeaderRow')
     for (var i = 0; i < keys.length; i++) {
         var headerRow = document.createElement('th');
+        headerRow.setAttribute('class', 'popHeaderRow')
         headerRow.innerHTML = keys[i];
         headerRows.appendChild(headerRow);
     } 
@@ -173,6 +173,7 @@ function addPopularityTable(objects, type, dir) {
        for (var j = 0; j < keys.length; j++) {
            var key = keys[j]
            var entryElement = document.createElement('td')
+           entryElement.setAttribute('class', 'popEntryRow')
            entryElement.innerHTML = tableData[key][i]
            entryRow.appendChild(entryElement);
        }  
