@@ -112,10 +112,10 @@ function updateAggregate() {
         (isNaN(score) || score === 0) ? 0 : (aggSum += score, nonZero += 1); // if score is a number, increase score and nonZero
     }
     aggSum = Math.round(aggSum / nonZero, 1)
-    document.getElementById("aggregateScore").innerHTML = aggSum + "/100"
+    document.getElementById("aggregateScore").innerHTML = aggSum
 }
 
-function addPopularityTable(objects, type) {
+function addPopularityTable(objects, type, dir) {
     var tableData = {}
     // elements to consider based on type of object
     switch (type) {
@@ -145,9 +145,16 @@ function addPopularityTable(objects, type) {
     }
     var keys = Object.keys(tableData)
 
-    // Generate popularity table element
-    var table = document.createElement("table")
+    var tableFragment = document.createDocumentFragment();
 
+    // Generate header caption
+    var caption = document.createElement("caption")
+    caption.innerHTML = ((dir === "asc") ? "Top" : "Bottom") + " " + objects.length + " " + type
+    
+
+    // Generate popularity table element
+    var table = document.createElement("table")    
+    // Create table fully before adding to the tableFragment
     // Create table headers
     var headerRows = document.createElement('tr')
     for (var i = 0; i < keys.length; i++) {
@@ -170,7 +177,9 @@ function addPopularityTable(objects, type) {
        table.appendChild(entryRow);
     }
 
-    document.getElementById("popularityTables").appendChild(table);
+    tableFragment.appendChild(caption);
+    tableFragment.appendChild(table);
+    document.getElementById("popularityTables").appendChild(tableFragment);
 
 }
 
@@ -232,7 +241,8 @@ function recieveResponse() {
     // once the data is loaded add the range slider to control amount considered in averages
     addRangeInput(name, handleRangeChange) 
     // create a table highlighting popular/unpopular items
-    addPopularityTable(getTopElements("asc", 3, name), name);
+    addPopularityTable(getTopElements("asc", 3, name), name, "asc");
+    addPopularityTable(getTopElements("desc", 3, name), name, "desc");
 
     console.log("Updated score obj %s", JSON.stringify(scoreObj))
 }
@@ -294,4 +304,8 @@ function popularityObjectSort(array, key) {
         let x = a[key], y = b[key];
         return ((x < y) ? -1 : ((x > y) ? 1 : 0))
     })
+}
+
+function insertBefore(el, referenceNode) {
+    referenceNode.parentNode.insertBefore(el, referenceNode);
 }
