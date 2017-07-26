@@ -133,8 +133,8 @@ function addPopularityTable(objects, type, dir) {
 
         case "artists":
             tableData.name = objects.map(function(obj) {return obj.name});
-            tableData.popularity = objects.map(function(obj) {return obj.popularity})
             tableData.followers = objects.map(function(obj) {return obj.followers.total})
+            tableData.popularity = objects.map(function(obj) {return obj.popularity})
             break;
         
         case "recently-played":
@@ -151,7 +151,7 @@ function addPopularityTable(objects, type, dir) {
 
     // Generate header caption
     var caption = document.createElement("caption")
-    caption.innerHTML = ((dir === "asc") ? "Top" : "Bottom") + " " + objects.length + " " + type
+    caption.innerHTML = ((dir === "asc") ? "Bottom" : "Top") + " " + objects.length + " " + type;
     caption.setAttribute('class', 'popCaption')
     table.appendChild(caption);
     
