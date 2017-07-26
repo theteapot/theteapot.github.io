@@ -1,5 +1,5 @@
 #rangeInputs {
-    width: 100%;
+    width: 40%;
     text-align: right;
     margin-top: 15%;
 }
@@ -54,7 +54,7 @@
     text-align: center;
     border-spacing: 10px;
     border-style: dotted;
-    width: 50%;
+    width: 100%;
 }
 
 .popHeaderRow {
@@ -63,8 +63,9 @@
 
 .popCaption {
     text-decoration: underline;
-    text-align: right;
+    text-align: left;
     padding-top: 30px;
+    padding-bottom: 10px;
 }
 
 
