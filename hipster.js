@@ -179,7 +179,6 @@ function addPopularityTable(objects, type, dir) {
        table.appendChild(entryRow);
     }
 
-    table.appendChild(table);
     document.getElementById("popularityTables").appendChild(table);
 
 }
