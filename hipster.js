@@ -101,6 +101,8 @@ function handleRangeChange(element) {
     updateAggregate()
 }
 
+// TODO: handle changing weight sliders
+
 function updateAggregate() {
     // updates some large number to measure average hipsterness
     // get every score by looking for id's in scoreObj and getting the innerHtml from displays
